@@ -8,6 +8,7 @@ from pathlib import Path
 import cv2
 import numpy as np
 
+
 class DetectBlue:
     """
     Detects blue objects from an image.
@@ -47,16 +48,14 @@ class DetectBlue:
         hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
 
         # Set upper and lower bounds for colour detection, this is in HSV
-        lower_blue = np.array([90,70,50])
-        upper_blue = np.array([150,255,255])
+        lower_blue = np.array([90, 70, 50])
+        upper_blue = np.array([150, 255, 255])
 
         # Apply the threshold for the colour detection
         mask = cv2.inRange(hsv, lower_blue, upper_blue)
 
         # Shows the detected colour from the mask
-        res = cv2.bitwise_and(img,img, mask= mask)
-        
-        
+        res = cv2.bitwise_and(img, img, mask=mask)
 
         # ============
         # ↑ BOOTCAMPERS MODIFY ABOVE THIS COMMENT ↑
@@ -123,8 +122,7 @@ class DetectRed:
         # Apply the threshold for the colour detection
         mask1 = cv2.inRange(hsv, lower_red1, upper_red1)
         mask2 = cv2.inRange(hsv, lower_red2, upper_red2)
-        mask = cv2.bitwise_or(mask1, mask2) # combined mask
-
+        mask = cv2.bitwise_or(mask1, mask2)  # combined mask
 
         # Shows the detected colour from the mask
         res = cv2.bitwise_and(img, img, mask=mask)
@@ -147,7 +145,7 @@ class DetectRed:
         # ============
         # ↓ BOOTCAMPERS MODIFY BELOW THIS COMMENT ↓
         # ============
-        
+
         return mask if return_mask else None
 
         # ============
